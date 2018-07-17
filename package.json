@@ -1,5 +1,5 @@
 {
-  "name": "babel-plugin-extensible-destructuring",
+  "name": "@scentbird/babel-plugin-extensible-destructuring",
   "version": "1.0.0",
   "description": "Babel plugin that enables extensible destructuring as per https://github.com/vacuumlabs/es-proposals",
   "author": "Tomas Kulich <tomas.kulich@gmail.com>",
@@ -7,7 +7,10 @@
     "Markéta Lisová <themarketka@gmail.com>",
     "Marcela Hrdá <marcelka.hrda@gmail.com>"
   ],
-  "repository": "vacuumlabs/babel-plugin-extensible-destructuring",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vacuumlabs/babel-plugin-extensible-destructuring.git"
+  },
   "keywords": [
     "babel-plugin",
     "destructuring"
@@ -22,11 +25,9 @@
     "build-runtime": "cd runtime && npm run build",
     "build-this": "npm run clean && babel --presets es2015 src --out-dir lib --copy-files",
     "build": "npm run build-runtime && npm run build-this",
-    "test": "npm run build && npm install && node runtest",
-    "prepublishOnly": "npm run test"
+    "test": "npm run build && npm install && node runtest"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
@@ -40,5 +41,14 @@
     "immutable": "^3.7.5",
     "babel-plugin-extensible-destructuring": "file:.",
     "extensible-runtime": "file:./runtime"
+  },
+  "bugs": {
+    "url": "https://github.com/vacuumlabs/babel-plugin-extensible-destructuring/issues"
+  },
+  "homepage": "https://github.com/vacuumlabs/babel-plugin-extensible-destructuring#readme",
+  "directories": {
+    "example": "example",
+    "lib": "lib",
+    "test": "test"
   }
 }
