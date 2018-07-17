@@ -43,6 +43,17 @@ function _printNode(node, lvl, indent) {
 
 export default function({types: t}) {
 
+  /*
+   Babel 7 renamed RestProperty to RestElement.
+   Check which one is available, then make a copy of it for future references.
+   */
+  let isRestElement
+  if (t.isRestElement) {
+    isRestElement = t.isRestElement
+  } else {
+    isRestElement = t.isRestProperty
+  }
+
   function generateRequire(pkgName, methodName)  {
     return t.variableDeclaration(
       'var',
@@ -178,7 +189,7 @@ export default function({types: t}) {
         if (i >= spreadPropIndex) break
 
         // ignore other spread properties
-        if (t.isRestProperty(prop)) continue
+        if (isRestElement(prop)) continue
 
         let key = prop.key
         if (t.isIdentifier(key) && !prop.computed) key = t.stringLiteral(prop.key.name)
@@ -237,7 +248,7 @@ export default function({types: t}) {
 
       for (let i = 0; i < pattern.properties.length; i++) {
         let prop = pattern.properties[i]
-        if (t.isRestProperty(prop)) {
+        if (isRestElement(prop)) {
           this.pushObjectRest(pattern, objRef, prop, i)
         } else {
           this.pushObjectProperty(prop, objRef)
